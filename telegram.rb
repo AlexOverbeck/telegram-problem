@@ -1,6 +1,6 @@
 class Telegram
   def self.build(line_length:, text:)
-    return unless text && line_length
+    return if text.nil? || line_length.nil?
     
     puts "---------------------------------------------------------"
     puts "Params:\nline_length: #{line_length}\ntext: #{text}"

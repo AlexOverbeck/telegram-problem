@@ -20,6 +20,6 @@ post '/telegram.json' do
 
   {
     telegram_lines: telegram,
-    line_count: telegram.length
+    line_count: telegram.nil? ? 0 : telegram.length
   }.to_json
 end
