@@ -1,5 +1,7 @@
+
 require 'rubygems'
 require 'bundler'
+require 'json'
 
 Bundler.require
 
