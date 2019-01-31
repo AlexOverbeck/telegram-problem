@@ -25,15 +25,16 @@ end
 
 post '/telegram.json' do
   content_type :json
+  data = JSON.parse(request.body.read)
 
   logger.info [
-    "Params: -----------------------------------------------",
-    params
+    "Data: -----------------------------------------------",
+    data
   ].join("\n")
 
-  telegram = Telegram.build(line_length: params[:w], text: params[:text])
+  telegram = Telegram.build(line_length: data['w'], text: data['text'])
 
-   logger.info [
+  logger.info [
     "\nTelegram: -------------------------------------------",
     "\n #{Array(telegram).join("\n")}",
     "\n====================================================="
