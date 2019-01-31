@@ -1,11 +1,9 @@
+
+
 class Telegram
   def self.build(line_length:, text:)
     return if text.nil? || line_length.nil?
-    
-    puts "---------------------------------------------------------"
-    puts "Params:\nline_length: #{line_length}\ntext: #{text}"
-    
-    truncate_lines(max_line_length: line_length, text: text)
+    truncate_lines(max_line_length: line_length.to_i, text: text)
   end
 
   def self.truncate_lines(max_line_length:, text:)
@@ -29,9 +27,6 @@ class Telegram
       end
     end
 
-    puts "\n\nTelegram: \n\n #{telegram.join("\n")}"
-    puts "\n\n====================================================="
-    
     telegram
   end
   private_class_method :truncate_lines
