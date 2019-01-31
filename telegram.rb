@@ -1,6 +1,10 @@
 class Telegram
   def self.build(line_length:, text:)
     return unless text && line_length
+    
+    puts "---------------------------------------------------------"
+    puts "Params:\nline_length: #{line_length}\ntext: #{text}"
+    
     truncate_lines(max_line_length: line_length, text: text)
   end
 
@@ -25,6 +29,9 @@ class Telegram
       end
     end
 
+    puts "\n\nTelegram: \n\n #{telegram.join("\n")}"
+    puts "\n\n====================================================="
+    
     telegram
   end
   private_class_method :truncate_lines
