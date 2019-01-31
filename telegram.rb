@@ -1,5 +1,6 @@
 class Telegram
   def self.build(line_length:, text:)
+    return unless text && line_length
     truncate_lines(max_line_length: line_length, text: text)
   end
 
