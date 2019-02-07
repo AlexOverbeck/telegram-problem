@@ -22,11 +22,11 @@ post '/morse.json' do
   content_type :json
 
   data = JSON.parse(request.body.read)
-  english = Morse.decode(data[:text])
-  morse_code = Morse.encode(data[:text])
+  english = Morse.decode(data['text'])
+  morse_code = Morse.encode(data['text'])
 
   {
-    english: english == "?" ? data[:text] : english,
-    morse_code: morse_code.strip.length == 0 ? data[:text] : morse_code
+    english: english == "?" ? data['text'] : english,
+    morse_code: morse_code.strip.length == 0 ? data['text'] : morse_code
   }.to_json
 end
