@@ -1,13 +1,27 @@
 require 'sinatra'
 require 'json'
 require 'morse'
+require 'logger'
 require './telegram'
+
+set :logger, Logger.new(STDOUT)
 
 post '/telegram.json' do
   content_type :json
 
   data = JSON.parse(request.body.read)
   telegram = Telegram.build(line_length: data['w'], text: data['text'])
+  
+  logger.info [	
+    "Data: -----------------------------------------------",	
+    data	
+  ].join("\n")
+
+  logger.info [	
+    "\nTelegram: -------------------------------------------",	
+    "\n #{Array(telegram).join("\n")}",	
+    "\n====================================================="	
+  ].join("\n")
 
   {
     telegram_text: telegram.join("\n"),
