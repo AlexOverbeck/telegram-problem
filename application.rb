@@ -1,10 +1,7 @@
 require 'sinatra'
 require 'json'
+require 'morse'
 require './telegram'
-
-get '/telegram' do
-  Array(Telegram.build(line_length: params[:w], text: params[:text])).join('<br>')
-end
 
 post '/telegram.json' do
   content_type :json
@@ -18,5 +15,15 @@ post '/telegram.json' do
     telegram_array: telegram,
     character_count: data['text'].length,
     line_count: telegram.nil? ? 0 : telegram.length
+  }.to_json
+end
+
+post '/morse.json' do
+  content_type :json
+  data = JSON.parse(request.body.read)
+
+  {
+    original_text: data['text'],
+    morse_code: Morse.encode(data['text'])
   }.to_json
 end
