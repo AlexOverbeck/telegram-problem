@@ -26,7 +26,7 @@ post '/morse.json' do
   morse_code = Morse.encode(data[:text])
 
   {
-    english: english == "?" ? params[:text] : english,
-    morse_code: morse_code.strip.length == 0 ? params[:text] : morse_code
+    english: english == "?" ? data[:text] : english,
+    morse_code: morse_code.strip.length == 0 ? data[:text] : morse_code
   }.to_json
 end
