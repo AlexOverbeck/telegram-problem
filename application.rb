@@ -13,7 +13,10 @@ post '/telegram.json' do
   telegram = Telegram.build(line_length: data['w'], text: data['text'])
 
   {
-    telegram_lines: telegram,
+    telegram_text: telegram.join("\n"),
+    telegram_html: telegram.join("<br>"),
+    telegram_array: telegram,
+    character_count: data['text'].length,
     line_count: telegram.nil? ? 0 : telegram.length
   }.to_json
 end
